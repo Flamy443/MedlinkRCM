@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Bricolage_Grotesque, Figtree, Instrument_Serif } from "next/font/google";
 import Preloader from "@/components/Preloader";
+import BookingModal from "@/components/BookingModal";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import ThemeToggle from "@/components/ThemeToggle";
@@ -40,6 +41,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         {children}
         <Footer />
         <ThemeToggle />
+        <BookingModal />
       </body>
     </html>
   );

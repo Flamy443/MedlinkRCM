@@ -5,6 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { MEGA, NAV, PARENT } from "@/lib/pages";
+import { openBooking } from "@/components/BookingModal";
 
 type Kid = [string, string];
 type NavItem = { id?: string; l: string; hub?: string; kids?: Kid[] };
@@ -94,7 +95,7 @@ export default function Header() {
         </nav>
 
         <div className="cta-top">
-          <Link className="btn outl" href="/audit">Let&apos;s Talk <span className="arrow">↗</span></Link>
+          <button type="button" className="btn outl" onClick={openBooking}>Let&apos;s Talk <span className="arrow">↗</span></button>
         </div>
         <button className="burger" id="burger" aria-label="Open menu" aria-expanded={mobileOpen} onClick={() => setMobileOpen((o) => !o)}>
           <svg width="22" height="22" viewBox="0 0 22 22" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><path d="M3 6h16M3 11h16M3 16h16" /></svg>
@@ -112,7 +113,7 @@ export default function Header() {
             <Link key={n.id} href={`/${n.id}`}>{n.l}</Link>
           )
         )}
-        <Link className="btn pri" href="/audit">Let&apos;s Talk</Link>
+        <button type="button" className="btn pri" onClick={() => { setMobileOpen(false); openBooking(); }}>Let&apos;s Talk</button>
       </div>
     </div>
   );
