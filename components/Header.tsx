@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { MEGA, NAV, PARENT } from "@/lib/pages";
 
 type Kid = [string, string];
@@ -17,9 +17,16 @@ export default function Header() {
   const page = pathname === "/" ? "home" : pathname.slice(1);
   const activeKey = PARENT[page] ? PARENT[page].l : page;
 
+  const firstRender = useRef(true);
   useEffect(() => {
     setOpenMenu(null);
     setMobileOpen(false);
+    // Every page opens at its hero. Skipped on first load so refresh keeps the browser's scroll restore.
+    if (firstRender.current) {
+      firstRender.current = false;
+      return;
+    }
+    window.scrollTo({ top: 0, left: 0, behavior: "instant" });
   }, [pathname]);
 
   useEffect(() => {
