@@ -30,7 +30,7 @@ export default function Header() {
 
   return (
     <div id="hdr" className="top">
-      <div className="wrap hdrmain" style={{ display: "flex", alignItems: "center", gap: 20, height: 78 }}>
+      <div className="wrap hdrmain" style={{ display: "flex", alignItems: "center", gap: 20 }}>
         <Link className="logo" href="/" aria-label="MedLink RCM home">
           <Image src="/logo.png" alt="MedLink RCM" width={640} height={525} priority />
         </Link>

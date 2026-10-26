@@ -581,7 +581,9 @@ h1{font-weight:800}
 .logo{font-family:var(--f-display)}
 
 /* brand logo image: white on dark surfaces */
-.logo img{height:58px;width:auto;display:block}
+.logo img{height:92px;width:auto;display:block;margin-block:-4px}
+.top>.wrap{height:112px}
+@media (max-width:760px){.logo img{height:64px}.top>.wrap{height:80px}}
 footer .logo img{height:84px;filter:brightness(0) invert(1)}
 :root[data-theme="dark"] #hdr .logo img{filter:brightness(0) invert(1)}
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]) #hdr .logo img{filter:brightness(0) invert(1)}}
