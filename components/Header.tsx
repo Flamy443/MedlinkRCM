@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { MEGA, NAV, PARENT } from "@/lib/pages";
 import { openBooking } from "@/components/BookingModal";
@@ -12,6 +12,7 @@ type NavItem = { id?: string; l: string; hub?: string; kids?: Kid[] };
 
 export default function Header() {
   const pathname = usePathname();
+  const router = useRouter();
   const [openMenu, setOpenMenu] = useState<string | null>(null);
   const [mobileOpen, setMobileOpen] = useState(false);
 
@@ -22,9 +23,12 @@ export default function Header() {
   useEffect(() => {
     setOpenMenu(null);
     setMobileOpen(false);
-    // Every page opens at its hero. Skipped on first load so refresh keeps the browser's scroll restore.
+    // Every page opens at its hero. Skipped on first load.
     if (firstRender.current) {
       firstRender.current = false;
+      // A browser reload on any inner page sends the visitor back to the home page.
+      const nav = performance.getEntriesByType("navigation")[0] as PerformanceNavigationTiming | undefined;
+      if (nav?.type === "reload" && pathname !== "/") router.replace("/");
       return;
     }
     window.scrollTo({ top: 0, left: 0, behavior: "instant" });
