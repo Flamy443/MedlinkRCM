@@ -3,6 +3,8 @@
   "name": "medlinkrcm",
   "main": ".open-next/worker.js",
   "compatibility_date": "2026-10-01",
+  "workers_dev": true,
+  "preview_urls": true,
   "compatibility_flags": ["nodejs_compat", "global_fetch_strictly_public"],
   "assets": {
     "directory": ".open-next/assets",
