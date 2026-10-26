@@ -32,9 +32,15 @@ export const metadata: Metadata = {
     "Revenue cycle management for hospitals, medical groups, dental networks and billing companies across the U.S.",
 };
 
+// Runs before first paint: a browser reload on any inner page goes back to the home page.
+const RELOAD_TO_HOME = `(function(){try{var n=performance.getEntriesByType("navigation")[0];var r=n?n.type==="reload":performance.navigation&&performance.navigation.type===1;if(r&&location.pathname!=="/"){location.replace("/")}}catch(e){}})();`;
+
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html lang="en" className={`${bricolage.variable} ${figtree.variable} ${instrument.variable}`}>
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: RELOAD_TO_HOME }} />
+      </head>
       <body>
         <Preloader />
         <Header />
