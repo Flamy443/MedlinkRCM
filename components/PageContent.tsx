@@ -64,7 +64,25 @@ export default function PageContent({ html }: { html: string }) {
       form.addEventListener("submit", (e) => { e.preventDefault(); show(3); }, { signal });
     }
 
-    return () => ac.abort();
+    // Scroll-reveal for the six-stage pipeline, plus a cursor spotlight on its cards.
+    const pipes = root.querySelectorAll<HTMLElement>(".pipe");
+    const reduce = matchMedia("(prefers-reduced-motion:reduce)").matches;
+    const io = new IntersectionObserver(
+      (entries) => entries.forEach((en) => {
+        if (en.isIntersecting) { en.target.classList.add("in"); io.unobserve(en.target); }
+      }),
+      { threshold: 0.2 }
+    );
+    pipes.forEach((p) => (reduce ? p.classList.add("in") : io.observe(p)));
+    root.querySelectorAll<HTMLElement>(".tile.stage").forEach((t) =>
+      t.addEventListener("pointermove", (e) => {
+        const r = t.getBoundingClientRect();
+        t.style.setProperty("--mx", `${e.clientX - r.left}px`);
+        t.style.setProperty("--my", `${e.clientY - r.top}px`);
+      }, { signal })
+    );
+
+    return () => { ac.abort(); io.disconnect(); };
   }, [html]);
 
   // Internal links inside the injected markup navigate client-side.
