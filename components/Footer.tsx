@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { EMAIL, PHONE } from "@/lib/pages";
 
@@ -16,11 +17,8 @@ export default function Footer() {
       <div className="wrap">
         <div className="cols">
           <div>
-            <Link className="logo" href="/">
-              <svg viewBox="0 0 56 36" fill="none" aria-hidden="true" style={{ width: 44, height: 30 }}>
-                <path d="M18 8c-8-6-16 2-12 12 3.700 9 14 11 18 3 3.500-6.500 7-14 14-14 8 0 10 12 0 16" stroke="#5fd3b8" strokeWidth="5.200" strokeLinecap="round" strokeLinejoin="round" />
-              </svg>
-              <span>MedLink<small>RCM</small></span>
+            <Link className="logo" href="/" aria-label="MedLink RCM home">
+              <Image src="/logo.png" alt="MedLink RCM" width={640} height={525} />
             </Link>
             <p>Revenue cycle management for hospitals, medical groups, dental networks and billing companies across the U.S.</p>
             <a className="tel" href="tel:+18884261280">{PHONE}</a>

@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -31,17 +32,7 @@ export default function Header() {
     <div id="hdr" className="top">
       <div className="wrap hdrmain" style={{ display: "flex", alignItems: "center", gap: 20, height: 78 }}>
         <Link className="logo" href="/" aria-label="MedLink RCM home">
-          <svg viewBox="0 0 56 36" fill="none" aria-hidden="true">
-            <defs>
-              <linearGradient id="lg" x1="0" x2="1">
-                <stop offset="0" stopColor="#0a2f6b" />
-                <stop offset=".5" stopColor="#0a5f8f" />
-                <stop offset="1" stopColor="#0da18f" />
-              </linearGradient>
-            </defs>
-            <path d="M18 8c-8-6-16 2-12 12 3.700 9 14 11 18 3 3.500-6.500 7-14 14-14 8 0 10 12 0 16" stroke="url(#lg)" strokeWidth="5.200" strokeLinecap="round" strokeLinejoin="round" />
-          </svg>
-          <span>MedLink<small>RCM</small></span>
+          <Image src="/logo.png" alt="MedLink RCM" width={640} height={525} priority />
         </Link>
 
         <nav className="main" id="nav" aria-label="Primary">

@@ -579,3 +579,9 @@ h1,h2,h3,h4{font-weight:700}
 h1{font-weight:800}
 .hero.dk h1{font-weight:800;letter-spacing:-.03em}
 .logo{font-family:var(--f-display)}
+
+/* brand logo image: white on dark surfaces */
+.logo img{height:58px;width:auto;display:block}
+footer .logo img{height:84px;filter:brightness(0) invert(1)}
+:root[data-theme="dark"] #hdr .logo img{filter:brightness(0) invert(1)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) #hdr .logo img{filter:brightness(0) invert(1)}}
